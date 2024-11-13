@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation Template to create an S3 bucket
+
+Parameters:
+  BucketName:
+    Type: String
+    Description: Name of the S3 bucket
+  EnableVersioning:
+    Type: String
+    AllowedValues: ['Enabled', 'Suspended']
+    Default: 'Suspended'
+    Description: Versioning status for the bucket
+
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      VersioningConfiguration:
+        Status: !Ref EnableVersioning
